@@ -45,12 +45,12 @@ export function WomensPerspective() {
           {/* ─── Left Column: Product Module Detail ────────────────────────── */}
           <div className="lg:col-span-6 flex flex-col items-start text-left space-y-6">
             <span className="text-xs text-purple font-bold tracking-widest uppercase">
-              👩‍🦰 The Perspective Check
+              👩‍🦰 Private First-Impression Audit
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               AI Can Guess.
               <br />
-              <span className="gradient-text font-black">Real Perspective Hits Different.</span>
+              <span className="gradient-text font-black">Real Human Perspective Hits Different.</span>
             </h2>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-lg">
               Smooth AI is excellent for identifying typos, basic formatting issues, and rating photo sharpness. But human attraction is nuanced. 
@@ -75,8 +75,8 @@ export function WomensPerspective() {
 
             {/* CTA */}
             <div className="pt-6 w-full sm:w-auto">
-              <GradientButton href="/pricing" variant="primary" size="lg" className="shadow-lg shadow-purple-500/20">
-                Get Women's Perspective Review
+              <GradientButton href="/quiz" variant="primary" size="lg" className="shadow-lg shadow-purple-500/20">
+                Get My Smooth Score
               </GradientButton>
             </div>
           </div>

@@ -145,7 +145,7 @@ export default function ReviewRequestPage() {
           Request Profile Audit
         </h1>
         <p className="text-muted-foreground text-xs sm:text-sm">
-          Get constructive, private feedback from real women. Step-by-step.
+          Get private first-impression audits from verified women in your age range. Step-by-step.
         </p>
       </div>
 

@@ -1,10 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import GlowOrb from '@/components/ui/GlowOrb';
 import GradientButton from '@/components/ui/GradientButton';
 
 export function FinalCTA() {
+  const router = useRouter();
+  const { enterDemoMode } = useAuth();
+
+  const handleDemoClick = () => {
+    enterDemoMode();
+    router.push('/dashboard');
+  };
+
   return (
     <section className="relative py-20 px-6 bg-[#0A0A0B] overflow-hidden text-center">
       {/* Background glowing decorator */}
@@ -34,12 +43,15 @@ export function FinalCTA() {
 
         {/* CTA Button Group */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto pt-4">
-          <GradientButton href="/quiz" variant="primary" size="lg" className="px-10">
+          <GradientButton href="/quiz" variant="primary" size="lg" className="px-10 shadow-lg shadow-purple-500/20">
             Get My Smooth Score
           </GradientButton>
-          <GradientButton href="/signup" variant="outline" size="lg" className="px-10">
-            Create Free Account
-          </GradientButton>
+          <button
+            onClick={handleDemoClick}
+            className="px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-white hover:bg-white/10 hover:border-white/20 transition-all text-center cursor-pointer focus:outline-none"
+          >
+            Try Demo Without Login
+          </button>
         </div>
 
       </div>

@@ -115,15 +115,16 @@ export function RealityCheck() {
             >
               <GlassCard
                 hover={true}
-                className={`p-6 h-full flex flex-col items-start space-y-4 rounded-3xl border bg-gradient-to-b ${card.bg} transition-all duration-300 min-h-[160px]`}
+                tilt={true}
+                className={`p-5 h-full flex flex-col items-start space-y-3.5 rounded-3xl border bg-gradient-to-b ${card.bg} transition-all duration-300 min-h-[150px]`}
               >
                 {/* Emoji bubble */}
-                <div className={`w-10 h-10 rounded-xl ${card.emojiBg} flex items-center justify-center text-xl shadow-inner border border-white/5`}>
+                <div className={`w-8 h-8 rounded-lg ${card.emojiBg} flex items-center justify-center text-lg shadow-inner border border-white/5`}>
                   {card.emoji}
                 </div>
 
                 {/* Funny text description */}
-                <p className="text-white/90 text-sm font-semibold leading-relaxed text-left">
+                <p className="text-white/90 text-xs sm:text-sm font-semibold leading-relaxed text-left">
                   "{card.text}"
                 </p>
               </GlassCard>

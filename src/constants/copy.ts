@@ -3,10 +3,10 @@
 export const HERO = {
   headline: "Your dating profile isn't working. Let's fix that.",
   subheadline:
-    "Get brutally honest feedback from real women, AI-powered scoring, and a complete profile glow-up — because guessing isn't a strategy.",
-  microcopy: "Free score in 2 minutes. No sign-up needed.",
-  cta: "Take the Smooth Score Quiz",
-  ctaSecondary: "See How It Works",
+    "Get private first-impression audits from verified women in your age range, AI-powered scoring, and a complete profile glow-up — because guessing isn't a strategy.",
+  microcopy: "Private by default. No public roasting. Reviewers never contact you directly.",
+  cta: "Get My Smooth Score",
+  ctaSecondary: "Try Demo Without Login",
 } as const;
 
 // ─── Reality Check Cards ──────────────────────────────────────────────────────
@@ -111,7 +111,7 @@ export const BEFORE_AFTER_EXAMPLES: BeforeAfterExample[] = [
 export const WOMENS_PERSPECTIVE = {
   headline: "What women actually think (but won't tell you)",
   subheadline:
-    "We asked real women to review dating profiles. Here's what they said — unfiltered.",
+    "We connect you with verified women in your age range to review your profile privately.",
   quotes: [
     {
       text: "If your first photo is a group photo, I'm not playing detective. I just swipe left.",
@@ -131,7 +131,7 @@ export const WOMENS_PERSPECTIVE = {
     },
   ],
   footnote:
-    "All reviews on Smooth Operator are done by verified women aged 21-35. Real perspectives, not AI guesses.",
+    "All reviews on Smooth Operator are conducted by verified women aged 21-35. Real human perspective, not AI guesses.",
 } as const;
 
 // ─── Dashboard Copy ───────────────────────────────────────────────────────────
@@ -144,7 +144,7 @@ export const DASHBOARD = {
     "This is how your profile stacks up. Higher is smoother.",
   reviewsTitle: "Your Reviews",
   reviewsEmpty:
-    "No reviews yet. Get your first honest review from a real woman.",
+    "No reviews yet. Get your first private first-impression audit from a verified woman in your age range.",
   aiChatTitle: "AI Chat Coach",
   aiChatDescription:
     "Practice your openers and conversations with our AI. No judgment, just improvement.",
@@ -162,8 +162,8 @@ export const ABOUT = {
     title: "The origin story",
     paragraphs: [
       "It started with a frustrated group chat. Five guys, zero dates, and a lot of 'bro what am I doing wrong?' messages. Turns out, the answer was: everything. Bad photos, boring bios, and openers that were basically conversation repellent.",
-      "So we did something wild — we asked women. Real women. Not dating coaches who charge ₹50,000 for 'be yourself' advice. Actual women in our age group who told us exactly what was wrong. And it worked. Profiles got fixed. Matches went up. Conversations lasted longer.",
-      "That's Smooth Operator. We took that group chat energy and turned it into a platform. Real feedback from real women, backed by AI analysis, at a price that doesn't require a personal loan.",
+      "So we did something wild — we asked verified women in our age range. Not dating coaches who charge ₹50,000 for 'be yourself' advice. Actual women in our target demographic who told us exactly what was wrong. And it worked. Profiles got fixed. Matches went up. Conversations lasted longer.",
+      "That's Smooth Operator. We took that group chat energy and turned it into a platform. Real feedback from verified women in your age range, backed by AI analysis, at a price that doesn't require a personal loan.",
     ],
   },
   values: [

@@ -194,8 +194,8 @@ export function Navbar() {
                 >
                   Sign In
                 </Link>
-                <GradientButton href="/signup" variant="primary" size="sm">
-                  Get Started
+                <GradientButton href="/quiz" variant="primary" size="sm">
+                  Get My Smooth Score
                 </GradientButton>
               </>
             )}

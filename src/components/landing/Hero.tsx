@@ -73,16 +73,23 @@ export function Hero() {
           </p>
 
           {/* Microcopy of trust */}
-          <p className="text-[10px] sm:text-xs text-white/50 font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <ShieldCheck size={14} className="text-emerald-400" />
-            <span>No fake personality. No creepy pickup lines. Just better first impressions.</span>
-          </p>
+          {/* Trust Guarantees Block */}
+          <div className="flex flex-col space-y-2 pt-1 text-[11px] sm:text-xs text-muted-foreground font-semibold">
+            <p className="flex items-center gap-2">
+              <ShieldCheck size={14} className="text-emerald-400 flex-shrink-0" />
+              <span>Private by default. No public roasting. Reviewers never contact you directly.</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <Lock size={12} className="text-purple-400 flex-shrink-0" />
+              <span>No fake personality. No creepy pickup lines. Just better first impressions.</span>
+            </p>
+          </div>
 
           {/* Upgraded CTA Action Row */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
             <GradientButton href="/quiz" variant="primary" size="lg" className="shadow-lg shadow-purple-500/20">
               <span className="flex items-center gap-1.5">
-                <span>Take the Smooth Score Quiz</span>
+                <span>Get My Smooth Score</span>
                 <ArrowRight size={16} />
               </span>
             </GradientButton>
@@ -95,7 +102,7 @@ export function Hero() {
             </button>
 
             <Link
-              href="/signup"
+              href="/quiz"
               className="px-6 py-4 rounded-xl border border-purple-500/20 bg-purple-500/5 text-sm font-semibold text-purple-300 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all text-center focus:outline-none"
             >
               Roast My Profile
@@ -132,7 +139,7 @@ export function Hero() {
               <div className="flex items-center justify-between border-b border-white/5 pb-3 z-10">
                 <div className="flex flex-col text-left">
                   <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-                    Diagnostic Report
+                    Smooth Score Preview
                   </span>
                   <span className="text-sm font-bold text-white">
                     First Impression Index
@@ -147,7 +154,7 @@ export function Hero() {
               <div className="grid grid-cols-12 gap-4 items-center z-10">
                 {/* Score Widget */}
                 <div className="col-span-5 flex justify-center">
-                  <ScoreRing score={64} size={110} strokeWidth={8} animated={true} />
+                  <ScoreRing score={64} size={110} strokeWidth={8} animated={true} showLabel={false} />
                 </div>
 
                 {/* Initial Audit Text */}
@@ -196,9 +203,14 @@ export function Hero() {
               </div>
 
               {/* Privacy indicators */}
-              <div className="flex items-center justify-center space-x-1.5 text-[10px] text-muted-foreground pt-1 z-10">
-                <Lock size={10} className="text-muted-foreground" />
-                <span>100% Secure & Private Assessment</span>
+              <div className="flex flex-col items-center justify-center space-y-1 text-[10px] text-muted-foreground pt-1 z-10">
+                <div className="flex items-center space-x-1.5">
+                  <Lock size={10} className="text-muted-foreground" />
+                  <span>100% Secure & Private Assessment</span>
+                </div>
+                <span className="text-[9px] text-purple-300 font-semibold">
+                  Sample preview — take the quiz for your actual score.
+                </span>
               </div>
             </GlassCard>
 

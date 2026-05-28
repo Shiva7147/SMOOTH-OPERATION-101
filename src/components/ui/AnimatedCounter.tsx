@@ -58,7 +58,7 @@ const AnimatedCounter = ({
 
   return (
     <span ref={ref} className={className}>
-      0{suffix}
+      {target}{suffix}
     </span>
   );
 };

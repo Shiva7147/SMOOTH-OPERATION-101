@@ -175,12 +175,12 @@ export function MobileNav({
                     Sign In
                   </Link>
                   <GradientButton
-                    href="/signup"
+                    href="/quiz"
                     onClick={onClose}
                     variant="primary"
                     fullWidth
                   >
-                    Get Started
+                    Get My Smooth Score
                   </GradientButton>
                 </div>
               )}

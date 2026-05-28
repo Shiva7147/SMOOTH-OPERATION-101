@@ -10,6 +10,7 @@ interface ScoreRingProps {
   strokeWidth?: number;
   animated?: boolean;
   className?: string;
+  showLabel?: boolean;
 }
 
 function getScoreCategory(score: number): { label: string; color: string } {
@@ -26,6 +27,7 @@ const ScoreRing = ({
   strokeWidth = 12,
   animated = true,
   className = '',
+  showLabel = true,
 }: ScoreRingProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
@@ -106,9 +108,11 @@ const ScoreRing = ({
         </div>
       </div>
 
-      <span className={`text-sm font-semibold ${category.color}`}>
-        {category.label}
-      </span>
+      {showLabel && (
+        <span className={`text-sm font-semibold ${category.color}`}>
+          {category.label}
+        </span>
+      )}
     </div>
   );
 };

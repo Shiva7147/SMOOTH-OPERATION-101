@@ -28,7 +28,7 @@ export function HowItWorks() {
       id: 4,
       icon: <Users size={24} className="text-amber-300" />,
       title: 'Get Reviewed',
-      description: "Upgrade for real women's perspectives and 1-on-1 elite coaching.",
+      description: "Upgrade for private reviews by verified women and 1-on-1 elite coaching.",
     },
   ];
 
