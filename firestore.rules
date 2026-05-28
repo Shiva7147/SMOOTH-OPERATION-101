@@ -1,0 +1,131 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: Check if user is logged in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper: Check if the user is checking their own document (matches UID)
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Helper: Check if document field matches user's UID
+    function matchesField(fieldName) {
+      return isSignedIn() && request.auth.uid == resource.data[fieldName];
+    }
+
+    // Helper: Check if the user has an Admin document with isAdmin == true
+    function isAdmin() {
+      return isSignedIn() && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Helper: Check if user is a registered reviewer
+    function isReviewer() {
+      return isSignedIn() && 
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'reviewer';
+    }
+
+    // ─── Collection: Users ──────────────────────────────────────────
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // ─── Collection: Admins ─────────────────────────────────────────
+    match /admins/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ─── Collection: Quiz Answers ───────────────────────────────────
+    match /quiz_answers/{docId} {
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // ─── Collection: Smooth Score Results ───────────────────────────
+    match /smooth_score_results/{docId} {
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // ─── Collection: AI Messages ────────────────────────────────────
+    match /ai_messages/{docId} {
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+    // ─── Collection: Review Requests ───────────────────────────────
+    match /review_requests/{docId} {
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isSignedIn() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.assignedReviewerId == request.auth.uid ||
+        isAdmin()
+      );
+      allow update: if isSignedIn() && (
+        resource.data.userId == request.auth.uid ||
+        resource.data.assignedReviewerId == request.auth.uid || 
+        isReviewer() ||
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ─── Collection: Reviews ────────────────────────────────────────
+    match /reviews/{docId} {
+      allow create: if isSignedIn() && (request.resource.data.reviewerId == request.auth.uid || isReviewer());
+      allow read: if isSignedIn() && (
+        resource.data.userId == request.auth.uid || 
+        resource.data.reviewerId == request.auth.uid ||
+        isAdmin()
+      );
+      allow update: if isSignedIn() && (resource.data.reviewerId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ─── Collection: Contact Messages ────────────────────────────────
+    match /contact_messages/{docId} {
+      allow create: if true; // Anyone can send contact messages
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // ─── Collection: Payments & Subscriptions ──────────────────────
+    match /payments/{docId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    match /subscriptions/{docId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    match /review_credits/{docId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    // ─── Collection: Debug Writes ──────────────────────────────────
+    match /debug_writes/{docId} {
+      allow create: if isSignedIn();
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
+    // Default deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
